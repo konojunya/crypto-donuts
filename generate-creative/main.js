@@ -13,6 +13,12 @@ let count = 1;
     await sharpe(baseImage)
       .composite([{input: taste, compose: 'over'}])
       .toFile(`./outputs/donuts-${count}.png`);
+    const metadata = JSON.stringify({
+      name: `Crypto Donuts #${count}`,
+      description: 'Crypto Donuts is digitally delicious donuts',
+      image: `https://gateway.pinata.cloud/ipfs/QmXMbbEm6fxt43c9vUotWxJxJSdq5Vvp8MeGEsRXuShSZo/donuts-${count}.png`
+    });
+    fs.writeFileSync(`./metadata/${count}.json`, metadata);
     count++;
   }
 
@@ -24,6 +30,12 @@ let count = 1;
             {input: topping, compose: 'over'}
           ])
         .toFile(`./outputs/donuts-${count}.png`);
+      const metadata = JSON.stringify({
+        name: `Crypto Donuts #${count}`,
+        description: 'Crypto Donuts is digitally delicious donuts',
+        image: `https://gateway.pinata.cloud/ipfs/QmXMbbEm6fxt43c9vUotWxJxJSdq5Vvp8MeGEsRXuShSZo/donuts-${count}.png`
+      });
+      fs.writeFileSync(`./metadata/${count}.json`, metadata);
       count++;
     }
   }
