@@ -6,6 +6,14 @@ const privateKey =
   process.env.PRIVATE_KEY ||
   "0x0000000000000000000000000000000000000000000000000000000000000000";
 
+task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
+  const accounts = await hre.ethers.getSigners();
+
+  for (const account of accounts) {
+    console.log(account.address);
+  }
+});
+
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
@@ -16,14 +24,13 @@ module.exports = {
       timeout: 50000,
     },
     matic: {
-      // url: "https://polygon-mainnet.infura.io/v3/088c86aef854484a968e9202eefc46cf",
-      url: "https://rpc-mumbai.maticvigil.com",
+      url: "https://rpc-mumbai.maticvigil.com/v1/d424b1c48f4ff156b7233d4c65d982e9aa3e16b7",
       accounts: [privateKey],
     },
   },
-  etherscan: {
-    apiKey: process.env.POLYGONSCAN_API_KEY
-  },
+  // etherscan: {
+  //   apiKey: process.env.POLYGONSCAN_API_KEY
+  // },
   solidity: {
     version: "0.8.4",
     settings: {

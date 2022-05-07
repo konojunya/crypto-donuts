@@ -11,7 +11,6 @@ contract Crypt0Donuts is Context, ERC721, ERC721Enumerable, Ownable {
   using SafeMath for uint256;
   string private _baseTokenURI;
   uint256 public constant MAX_ELEMENTS = 84;
-  uint256 public constant price = 100000000000000;
 
   constructor(
     string memory name,
@@ -42,7 +41,6 @@ contract Crypt0Donuts is Context, ERC721, ERC721Enumerable, Ownable {
 
   function buy() public payable {
     require(totalSupply() < MAX_ELEMENTS, "Purchase would exceed max supply of NFTs");
-    require(price <= msg.value, "Ether value sent is not correct");
     uint256 mintIndex = totalSupply();
     _safeMint(msg.sender, mintIndex);
   }
